@@ -1,7 +1,7 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
 //sets up the page for the site showing all books
 let page = 1;
-let matches = books
+let matches = books;
 
 //Create a function to create the book preview button so you dont rewrite the code (DRY principle(Don't repeat yourself))
 function bookPreviewButton({ author, id, image, title }) {
@@ -24,7 +24,30 @@ matches.slice(0, BOOKS_PER_PAGE).forEach(book => {
     starting.appendChild(bookPreviewButton(book));
 });
 
-document.querySelector('[data-list-items]').appendChild(starting)
+document.querySelector('[data-list-items]').appendChild(starting);
+
+//create a function for dropdown options for both genres and authors
+
+function createDropDownOptions(data, defaultValue, defaultText) {
+    const fragment = document.createDocumentFragment();
+    const defaultOption = document.createElement("option");
+    defaultOption.value = defaultValue;
+    defaultOption.innerText = defaultText;
+    fragment.appendChild(defaultOption);
+
+    for (const [id, name] of Object.entries(data)) {
+        const option = document.createElement('option');
+        option.value = id;
+        option.innerText = name;
+        fragment.appendChild(option);
+    }
+    return fragment;
+}
+
+//use new function to populate genre and author dropdowns
+document.querySelector('[data-search-genres]').appendChild(createDropDownOptions(genres, 'any', 'All Genres'));
+document.querySelector('[data-search-authors]').appendChild(createDropDownOptions(authors, 'any', 'All Authors'));
+
 //sets the genre dropdown options, starting with no filter (all genres)
 const genreHtml = document.createDocumentFragment()
 const firstGenreElement = document.createElement('option')
