@@ -37,3 +37,18 @@ After completing the tasks, prepare a brief presentation for your coaching group
 Submit the refactored version of the "Book Connect" application, including all HTML, CSS, and JavaScript files. Ensure that your code is well-documented and adheres to the specified Styleguides. Include a written report covering the discussion and reflection points outlined above.
 
 Make sure to submit your project to the LMS on the DJS03 Project Tab.
+
+
+Discussion and reflection
+
+- The rationale behind the refactoring decisions made, including the choice of objects and functions.
+   In the process of refactoring the "Book Connect" application, my primary goal was to enhance code maintainability, readability, and extendability. I achieved this primarily through the use of reusable functions to handle repetitive tasks, such as generating book preview buttons and populating generic dropdown options. This approach adheres to the DRY (Don't Repeat Yourself) principle, reducing code duplication and simplifying the code, ultimately improving readability.
+
+- How abstraction has made the code more maintainable and extendable.
+   Abstraction has been very helpful in simplifying complexity. By creating functions for tasks like button creation, I can avoid recreating the logic each time I need to update the button through the search function. If updates or changes need to be made, such as adding a property like the number of pages for each book, I can implement this change consistently across the site without worrying about inconsistencies, as the change only needs to be made where the function is defined.
+
+- Any challenges faced during the refactoring process and how they were overcome.
+   Initially, it was difficult to spot all instances of duplicated logic in the code and determine what changes should be made. I overcame this by carefully reading through the code and applying comments to clarify what each section achieves. This process allowed me to identify opportunities for abstraction, such as simplifying the cancel event listener function and creating a generic logic system for the dropdown options that could be applied to both genres and authors, rather than maintaining separate code for each section.
+   
+- Reflections on how this exercise has deepened your understanding of JavaScript programming concepts.
+   This refactoring exercise was quite challenging and provided a clearer picture of coding in the real world, where you often receive a block of code that you need to piece together and resolve. I gained a deeper appreciation for the value of clear comments and abstracting code into modular blocks, where each function's role is clearly defined. This approach makes debugging and updating more intuitive, as it's easier to identify which sections of the code need attention. Even now, I see opportunities for further abstraction to clean up the code, such as creating constants for frequently repeated queries. Overall, it's evident that writing and commenting clean code is a significant time-saver, making maintenance and development much easier.
