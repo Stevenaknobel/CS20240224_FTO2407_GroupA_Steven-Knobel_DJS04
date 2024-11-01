@@ -21,28 +21,8 @@ function bookPreviewButton({ author, id, image, title }) {
 //populate the initial book preview with the new function
 const starting = document.createDocumentFragment();
 matches.slice(0, BOOKS_PER_PAGE).forEach(book => {
-    starting.appendChild(bookPreviewButton(book))
-})
-//create book preview buttons on the page
-for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
-    const element = document.createElement('button')
-    element.classList = 'preview'
-    element.setAttribute('data-preview', id)
-//creates the innerHTML for the button including the image, title and authors name pulled from data.js
-    element.innerHTML = `
-        <img
-            class="preview__image"
-            src="${image}"
-        />
-        
-        <div class="preview__info">
-            <h3 class="preview__title">${title}</h3>
-            <div class="preview__author">${authors[author]}</div>
-        </div>
-    `
-
-    starting.appendChild(element)
-}
+    starting.appendChild(bookPreviewButton(book));
+});
 
 document.querySelector('[data-list-items]').appendChild(starting)
 //sets the genre dropdown options, starting with no filter (all genres)
