@@ -81,32 +81,31 @@ function cancelEventListener(selector) {
     });
 }
 
-//event listener for canceling the search overlay
-document.querySelector('[data-search-cancel]').addEventListener('click', () => {
-    document.querySelector('[data-search-overlay]').open = false
-})
-//event listener for cancelling the settings overlay
-document.querySelector('[data-settings-cancel]').addEventListener('click', () => {
-    document.querySelector('[data-settings-overlay]').open = false
-})
+//Event Listeners
+cancelEventListener('[data-search-cancel]');
+cancelEventListener('[data-settings-cancel]');
+
 //event listener to open search overlay
 document.querySelector('[data-header-search]').addEventListener('click', () => {
-    document.querySelector('[data-search-overlay]').open = true 
-    document.querySelector('[data-search-title]').focus()
-})
+    document.querySelector('[data-search-overlay]').open = true;
+    document.querySelector('[data-search-title]').focus();
+});
+
 //event listener to open settings overlay
 document.querySelector('[data-header-settings]').addEventListener('click', () => {
-    document.querySelector('[data-settings-overlay]').open = true 
-})
+    document.querySelector('[data-settings-overlay]').open = true;
+});
+
 //event listener to close the list overlay
 document.querySelector('[data-list-close]').addEventListener('click', () => {
-    document.querySelector('[data-list-active]').open = false
-})
+    document.querySelector('[data-list-active]').open = false;
+});
+
 //event listener for the settings form submitting
 document.querySelector('[data-settings-form]').addEventListener('submit', (event) => {
-    event.preventDefault()
-    const formData = new FormData(event.target)
-    const { theme } = Object.fromEntries(formData)
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const { theme } = Object.fromEntries(formData);
 
     if (theme === 'night') {
         document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
@@ -116,14 +115,16 @@ document.querySelector('[data-settings-form]').addEventListener('submit', (event
         document.documentElement.style.setProperty('--color-light', '255, 255, 255');
     }
     
-    document.querySelector('[data-settings-overlay]').open = false
+    document.querySelector('[data-settings-overlay]').open = false;
 })
+
 //event listener for the search submission
 document.querySelector('[data-search-form]').addEventListener('submit', (event) => {
-    event.preventDefault()
-    const formData = new FormData(event.target)
-    const filters = Object.fromEntries(formData)
-    const result = []
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const filters = Object.fromEntries(formData);
+    const result = [];
+
 //create the filter logic for genre, author and title
     for (const book of books) {
         let genreMatch = filters.genre === 'any'
