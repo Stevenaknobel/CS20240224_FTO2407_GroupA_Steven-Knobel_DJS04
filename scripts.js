@@ -74,6 +74,13 @@ listButton.innerHTML = `
     <span class="list__remaining"> (${remainingBooks > 0 ? remainingBooks : 0})</span>
 `;
 
+//create a function to cancel an event listener
+function cancelEventListener(selector) {
+    document.querySelector(selector).addEventListener("click", () => {
+        document.querySelector(selector.replace("cancel", "overlay")).open = false;
+    });
+}
+
 //event listener for canceling the search overlay
 document.querySelector('[data-search-cancel]').addEventListener('click', () => {
     document.querySelector('[data-search-overlay]').open = false
