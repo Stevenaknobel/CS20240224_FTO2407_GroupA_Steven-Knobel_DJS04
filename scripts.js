@@ -153,7 +153,7 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
     }
 //reset the innerhtml by clearing it
     document.querySelector('[data-list-items]').innerHTML = ''
-    const newItems = document.createDocumentFragment()
+    const newItems = document.createDocumentFragment();
 //recreate the buttons for filtered books using the bookPreviewButton function
     result.slice(0, BOOKS_PER_PAGE).forEach(book => {
         newItems.appendChild(bookPreviewButton(book));
@@ -173,30 +173,21 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
 
 document.querySelector('[data-list-button]').addEventListener('click', () => {
     const fragment = document.createDocumentFragment()
-//create buttons again
-    for (const { author, id, image, title } of matches.slice(page * BOOKS_PER_PAGE, (page + 1) * BOOKS_PER_PAGE)) {
-        const element = document.createElement('button')
-        element.classList = 'preview'
-        element.setAttribute('data-preview', id)
-    
-        element.innerHTML = `
-            <img
-                class="preview__image"
-                src="${image}"
-            />
-            
-            <div class="preview__info">
-                <h3 class="preview__title">${title}</h3>
-                <div class="preview__author">${authors[author]}</div>
-            </div>
-        `
-
-        fragment.appendChild(element)
-    }
+//update logic to use the function bookPreviewButton to create the buttons
+matches.slice(page * BOOKS_PER_PAGE, (page + 1) * BOOKS_PER_PAGE).forEach(book => {
+        fragment.appendChild(bookPreviewButton(book));
+    });
 
     document.querySelector('[data-list-items]').appendChild(fragment)
-    page += 1
-})
+    page += 1;
+//update the show more button
+    const remainingBooks = matches.length - (page * BOOKS_PER_PAGE);
+    listButton.disabled = remainingBooks < 1;
+    listButton.innerHTML = `
+        <span>Show more</span>
+        <span class="list__remaining"> (${remainingBooks > 0 ? remainingBooks : 0})</span>
+    `;
+});
 //event listener for clicking on a book preview
 document.querySelector('[data-list-items]').addEventListener('click', (event) => {
     const pathArray = Array.from(event.path || event.composedPath())
