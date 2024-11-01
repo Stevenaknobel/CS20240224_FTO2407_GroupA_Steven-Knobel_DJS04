@@ -59,14 +59,21 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
     document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
     document.documentElement.style.setProperty('--color-light', '255, 255, 255');
 }
-//have the show more button at the bottom with remaining books
-document.querySelector('[data-list-button]').innerText = `Show more (${books.length - BOOKS_PER_PAGE})`
-document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) > 0
 
-document.querySelector('[data-list-button]').innerHTML = `
+
+//have the show more button at the bottom with remaining books
+//create a const to call the data-list-button once instead of repeatedly 
+const listButton = document.querySelector('[data-list-button]');
+const remainingBooks = matches.length - (page * BOOKS_PER_PAGE);
+//disable when <1 book left to show
+listButton.disabled = remainingBooks < 1;
+
+// Set innerhtml with the remaining book count
+listButton.innerHTML = `
     <span>Show more</span>
-    <span class="list__remaining"> (${(matches.length - (page * BOOKS_PER_PAGE)) > 0 ? (matches.length - (page * BOOKS_PER_PAGE)) : 0})</span>
-`
+    <span class="list__remaining"> (${remainingBooks > 0 ? remainingBooks : 0})</span>
+`;
+
 //event listener for canceling the search overlay
 document.querySelector('[data-search-cancel]').addEventListener('click', () => {
     document.querySelector('[data-search-overlay]').open = false
