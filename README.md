@@ -38,7 +38,7 @@ Submit the refactored version of the "Book Connect" application, including all H
 
 Make sure to submit your project to the LMS on the DJS03 Project Tab.
 
-
+DJS03
 Discussion and reflection
 
 - The rationale behind the refactoring decisions made, including the choice of objects and functions.
@@ -52,3 +52,27 @@ Discussion and reflection
    
 - Reflections on how this exercise has deepened your understanding of JavaScript programming concepts.
    This refactoring exercise was quite challenging and provided a clearer picture of coding in the real world, where you often receive a block of code that you need to piece together and resolve. I gained a deeper appreciation for the value of clear comments and abstracting code into modular blocks, where each function's role is clearly defined. This approach makes debugging and updating more intuitive, as it's easier to identify which sections of the code need attention. Even now, I see opportunities for further abstraction to clean up the code, such as creating constants for frequently repeated queries. Overall, it's evident that writing and commenting clean code is a significant time-saver, making maintenance and development much easier.
+
+DJS04
+Documentation of Creating Web Components
+   Identify the element that could benefit from encapsulated as components
+      in this example it is the book preview component, other components could include the dropdown selection
+   In a seperate js for ease of reuse create a class component that extends the HTMLElement
+    then proceed to attach the shadowDOM (attachShadow({mode: "open"})) can also be closed
+    create a <style> element for any CSS styling
+    create attributes
+    finally add event handling, such as listeners or custom events
+lastly export this with the Export syntax, and import into the main JS file with the correct file path and ensure where the even is called it is handled appropriately.
+
+
+Challenges faced
+   consol errors through recursion (set up an infinite loop)
+      resolved this by creating a check to only call if the data has changed
+         (name === 'data-id' && oldValue !== newValue)
+
+   data attributes in the parent script being set incorrectly
+
+   applying the CSS styling
+      found out you can directly create a style element and apply the styling in the web component directly
+
+Web components can clearly make functions and elements much easier to reuse, however they are much more finicky and complicated to set up initially so it is only worth while if you need to encapsulate the function or plan on reusing it at a later stage. IE, if i function is very unique and will only be used once it isn't really worth going through the process, however for something that has multiple uses, the extra time initially will be saved down the line with a much easier implementation.
