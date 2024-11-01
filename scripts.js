@@ -185,24 +185,9 @@ matches.slice(page * BOOKS_PER_PAGE, (page + 1) * BOOKS_PER_PAGE).forEach(book =
     `;
 });
 //event listener for clicking on a book preview
-document.querySelector('[data-list-items]').addEventListener('click', (event) => {
-    const pathArray = Array.from(event.path || event.composedPath())
-    let active = null
-
-    for (const node of pathArray) {
-        if (active) break
-
-        if (node?.dataset?.preview) {
-            let result = null
-    //looking for a book matching the clicked preview button
-            for (const singleBook of books) {
-                if (result) break;
-                if (singleBook.id === node?.dataset?.preview) result = singleBook
-            } 
-        
-            active = result
-        }
-    }
+document.querySelector('[data-list-items]').addEventListener('book-preview-click', (event) => {
+    const bookId = event.detail.id;
+    const active = books.find(book => book.id === bookId);
     //if an active book is found, populate all the details below in the overlay
     if (active) {
         document.querySelector('[data-list-active]').open = true
