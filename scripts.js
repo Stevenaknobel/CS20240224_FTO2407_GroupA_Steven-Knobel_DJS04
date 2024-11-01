@@ -48,36 +48,7 @@ function createDropDownOptions(data, defaultValue, defaultText) {
 document.querySelector('[data-search-genres]').appendChild(createDropDownOptions(genres, 'any', 'All Genres'));
 document.querySelector('[data-search-authors]').appendChild(createDropDownOptions(authors, 'any', 'All Authors'));
 
-//sets the genre dropdown options, starting with no filter (all genres)
-const genreHtml = document.createDocumentFragment()
-const firstGenreElement = document.createElement('option')
-firstGenreElement.value = 'any'
-firstGenreElement.innerText = 'All Genres'
-genreHtml.appendChild(firstGenreElement)
-//creates dropdown options for each genre that is pulled
-for (const [id, name] of Object.entries(genres)) {
-    const element = document.createElement('option')
-    element.value = id
-    element.innerText = name
-    genreHtml.appendChild(element)
-}
 
-document.querySelector('[data-search-genres]').appendChild(genreHtml)
-//sets the Author dropdown options, starting with no filter (all authors)
-const authorsHtml = document.createDocumentFragment()
-const firstAuthorElement = document.createElement('option')
-firstAuthorElement.value = 'any'
-firstAuthorElement.innerText = 'All Authors'
-authorsHtml.appendChild(firstAuthorElement)
-//create dropdown options for each author
-for (const [id, name] of Object.entries(authors)) {
-    const element = document.createElement('option')
-    element.value = id
-    element.innerText = name
-    authorsHtml.appendChild(element)
-}
-
-document.querySelector('[data-search-authors]').appendChild(authorsHtml)
 //checks users preference to either set light or dark mode based on current scheme
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     document.querySelector('[data-settings-theme]').value = 'night'
