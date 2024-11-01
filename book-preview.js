@@ -110,7 +110,8 @@ export class BookPreview extends HTMLElement {
 //called whenever data-id, image, title or author changes
     attributeChangedCallback(name, oldValue, newValue) {
         const shadow = this.shadowRoot;
-        if (name === 'data-id') {
+        //set to only update is the value has changed
+        if (name === 'data-id' && oldValue !== newValue) {
             this.setAttribute('data-id', newValue);
         } else if (name === 'image') {
             shadow.querySelector('.preview__image').src = newValue;
