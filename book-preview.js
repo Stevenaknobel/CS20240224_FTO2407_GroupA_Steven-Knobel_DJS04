@@ -1,4 +1,4 @@
-class BookPreview extends HTMLElement {
+export class BookPreview extends HTMLElement {
     //set up the constructor
     constructor() {
         super();
